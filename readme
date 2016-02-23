@@ -1,0 +1,63 @@
+NAME
+	myShell
+
+SYNOPSIS
+	[file] [arguments]
+	Where [file] is the pathname of an executable file or the name of an internal command, and where arguments are the arguments for that program or internal command. Each argument must be separated by whitespace. To enter the current command line, press ‘Enter’.
+
+DESCRIPTION
+	myShell is a simple UNIX shell that executes commands read from standard input or from a file. myShell supports internal commands, I/O redirection, piping, and other useful features.
+
+ARGUMENTS
+	The first argument is assumed to be a shell command or the name of a file to be executed. Any following arguments are assumed to be arguments for the command or the file to be executed.
+
+BUILT IN COMMANDS
+	The following shell commands are defined internally. 
+
+	cd [directory]		Changes the current working directory to [directory]
+	clr			Clears the terminal
+	dir [directory]		Lists the contents of [directory]
+	environ		Lists the environment strings
+	echo [comment]	Prints [comment] to the screen, ignoring multiple spaces
+	help			Displays user manual for myShell
+	pause			Pauses operation of myShell until ‘Enter’ is pressed
+	quit			Quits myShell
+
+BATCH COMMANDS
+	myShell is capable of executing shell commands in batches, using a file that contains shell commands. Batch commands can be executing using the syntax:
+
+	myShell [batchfile]
+
+	where batchfile is assumed to contain a set of commands lines for the shell to process.
+
+REDIRECTION
+	myShell supports redirection of input and output. By default, myShell takes input from standard input and outputs to standard output. However, myShell can be configured to take input from or output to any file.
+
+	To execute a command that takes input from a file, use the following format:
+	[file] [arguments] < [inputfile]
+
+	To execute a command that outputs to a file, creating the file if it does not exist and overwriting its contents if it does, use the following format:
+	[file] [arguments] > [outputfile]
+
+	To execute a command that outputs to a file, creating the file if it does not exist and appending to its contents if it does, use the following format:
+	[file] [arguments] >> [outputfile]
+
+	A single command can have both input and output redirection, using the following format:
+	[file] [arguments] < [inputfile] > [outputfile]
+
+	Output redirection is supported for the following internal commands:
+	dir, environ, echo, help
+
+PIPING
+	myShell supports piping, which allows the user to redirect the output of a process to be the input of another process. This can be done using the following format:
+
+	[outfile] [arguments] | [infile] [arguments]
+
+	Where outfield and infile are executable files, and outfile is the process whose output will be redirected to the input of infile.
+
+BACKGROUND EXECUTION
+	Programs can be executed in the background of myShell, meaning that myShell will not wait for the program to finish executing before starting the next command line. This can be implemented using the following format:
+
+	[file] [arguments] &
+
+	Where & must be the last argument in the command line.
